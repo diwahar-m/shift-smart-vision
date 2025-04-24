@@ -1,4 +1,5 @@
-import AppCenterStack from "../components/mui/AppCenterStack";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import AppVStack from "../components/mui/AppVStack";
 import AppImage from "../components/mui/AppImage";
 import { LogoIcon } from "../assets";
@@ -10,7 +11,7 @@ import { useContext, useEffect, useState } from "react";
 import { LoginContext } from "../context";
 export default function Login() {
   const navigate = useNavigate();
-  const { user, setUser } = useContext(LoginContext);
+  const { user, setUser } = useContext<any>(LoginContext);
   const [error, setError] = useState("");
   useEffect(() => {
     setError("");
@@ -41,7 +42,7 @@ export default function Login() {
         />
         <AppText
           variant="subtitle2"
-          fontStyles={["14px", "18px", 500]}
+          fontStyles={["14px", "18px", "500"]}
           sx={{ color: "#0000ff" }}
           //   fontStyles={['']}
           text={"--- MISSION - VISION ---"}

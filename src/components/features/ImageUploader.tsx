@@ -27,7 +27,7 @@ export default function ImageUploader() {
     asset_id: "",
   });
 
-  const { loader, setLoader, setPromptResult } = useContext(LoginContext);
+  const { loader, setLoader, setPromptResult } = useContext<any>(LoginContext);
 
   const { data } = useQuery<any>({
     queryKey: [GET_ASSET_LIST_API],
@@ -62,13 +62,14 @@ export default function ImageUploader() {
   useEffect(() => {
     const option: any = [];
 
-    data?.data?.results?.map((_) => option.push(formatSelectOptions(_)));
+    data?.data?.results?.map((_: any) => option.push(formatSelectOptions(_)));
     setOptions(option);
   }, [data]);
 
   const handleSubmit = () => {
     console.log(imageType);
     if (imageType?.asset_id && imageType?.input_image_id) {
+      // @ts-expect-error ""
       mutateAssessment(imageType);
       setLoader(true);
     } else {
@@ -99,7 +100,7 @@ export default function ImageUploader() {
       <AppHStack sx={{ justifyContent: "space-between", width: "100%" }}>
         <AppSelect
           options={options}
-          onChange={(selected) =>
+          onChange={(selected: any) =>
             setImageType({ ...imageType, asset_id: selected?.id })
           }
         />
@@ -126,7 +127,7 @@ export default function ImageUploader() {
       </AppHStack>
       <AppDropZone
         file={files}
-        setFile={(file, formData) => {
+        setFile={(file: any, formData: any) => {
           setFiles(file);
           mutate(formData);
         }}

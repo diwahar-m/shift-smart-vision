@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import AppVStack from "../mui/AppVStack";
 import AppText from "../mui/AppText";
 import AppAccordian from "../mui/AppAccordian";
@@ -7,8 +9,7 @@ import EmptyContainer from "./EmptyContainer";
 import AppLoader from "../others/AppLoader";
 
 export default function Criteria() {
-  const { promptResult, loader } = useContext(LoginContext);
-  console.log(promptResult);
+  const { promptResult, loader } = useContext<any>(LoginContext);
   return (
     <AppVStack
       sx={{
@@ -33,7 +34,7 @@ export default function Criteria() {
         <AppAccordian
           name={promptResult?.criteria_name}
           desc={promptResult?.critera}
-          prediction={promptResult?.prediction}
+          // prediction={promptResult?.prediction}
         />
       ) : (
         <EmptyContainer />

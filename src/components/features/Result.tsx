@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import AppVStack from "../mui/AppVStack";
 import AppText from "../mui/AppText";
 import { useContext } from "react";
@@ -9,7 +11,7 @@ import AppLoader from "../others/AppLoader";
 import { Box } from "@mui/material";
 
 export default function Result() {
-  const { promptResult, loader } = useContext(LoginContext);
+  const { promptResult, loader } = useContext<any>(LoginContext);
 
   return (
     <AppVStack

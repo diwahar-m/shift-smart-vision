@@ -1,12 +1,7 @@
-import React from "react";
 import AppVStack from "../components/mui/AppVStack";
-import AppHStack from "../components/mui/AppHStack";
-import AppText from "../components/mui/AppText";
-import AppImage from "../components/mui/AppImage";
 import Criteria from "../components/features/Criteria";
 import ImageUploader from "../components/features/ImageUploader";
 import Result from "../components/features/Result";
-import { LogoIcon } from "../assets";
 import { Grid } from "@mui/material";
 import AppNavbar from "../components/mui/AppNavbar";
 

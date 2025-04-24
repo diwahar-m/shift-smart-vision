@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { useDropzone } from "react-dropzone";
 import AppImage from "../mui/AppImage";
 import { Box } from "@mui/material";
@@ -89,7 +89,7 @@ export default function AppDropZone({ file, setFile, setFiles }: any) {
         </Box>
       ) : (
         <div className="container">
-          <div {...getRootProps({ style })}>
+          <div {...getRootProps({ style: style as any })}>
             <input {...getInputProps()} />
             <p style={{ color: "#0000ff" }}>
               Drag 'n' drop some files here, or click to select files

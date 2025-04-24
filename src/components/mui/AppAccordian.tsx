@@ -8,8 +8,6 @@ import MuiAccordionSummary, {
 } from "@mui/material/AccordionSummary";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
-import AppHStack from "./AppHStack";
-import AppText from "./AppText";
 
 const Accordion = styled((props: AccordionProps) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -51,19 +49,14 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 interface AppAccordianProps {
   name: string;
   desc: string;
-  prediction: string;
 }
 
-export default function AppAccordian({
-  name,
-  desc,
-  prediction,
-}: AppAccordianProps) {
+export default function AppAccordian({ name, desc }: AppAccordianProps) {
   console.log(name, desc);
   const [expanded, setExpanded] = React.useState<string | false>("panel1");
 
   const handleChange =
-    (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
+    (panel: string) => (_event: React.SyntheticEvent, newExpanded: boolean) => {
       setExpanded(newExpanded ? panel : false);
     };
 
