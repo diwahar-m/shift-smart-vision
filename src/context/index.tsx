@@ -20,7 +20,7 @@ export default function ContextLayout() {
   }, []);
 
   return (
-    <Box sx={{ maxWidth: "100vw", flex: 1 }}>
+    <Box sx={{ maxWidth: "100vw", flex: 1, height: "100vh" }}>
       <LoginContext.Provider
         value={{
           user,

@@ -31,12 +31,27 @@ const AppText = ({
         color: "#000",
         fontWeight,
         ...sx,
+        // wordWrap: "break-word",
+        // overflowWrap: "break-word",
+        maxWidth: "100%",
       }}
       variant={variant}
       {...rest}
     >
       <Tooltip title={tooltipText}>
-        <span style={{ whiteSpace: "nowrap" }}> {text || children}</span>
+        <span
+          style={{
+            // whiteSpace: "nowrap",
+            // wordWrap: "break-word",
+            // overflowWrap: "break-word",
+            maxWidth: "100%",
+            // display: "inline-block",
+            // flexWrap: "wrap",
+          }}
+        >
+          {" "}
+          {text || children}
+        </span>
       </Tooltip>
     </Typography>
   );

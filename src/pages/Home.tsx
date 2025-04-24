@@ -7,31 +7,34 @@ import Criteria from "../components/features/Criteria";
 import ImageUploader from "../components/features/ImageUploader";
 import Result from "../components/features/Result";
 import { LogoIcon } from "../assets";
-import { Divider } from "@mui/material";
+import { Grid } from "@mui/material";
 import AppNavbar from "../components/mui/AppNavbar";
 
 export default function Home() {
   return (
-    <AppVStack sx={{ gap: "20px", bgcolor: "red", maxWidth: "100%" }}>
+    <AppVStack sx={{ gap: "30px", maxWidth: "100%", padding: "20px" }}>
       <AppNavbar />
-      <AppHStack sx={{ gap: "5px", alignItems: "center" }}>
-        <AppImage
-          src={LogoIcon}
-          sx={{ width: "160px", margin: "10px 5px 10px 5px" }}
-        />
-        <AppText
-          variant="subtitle2"
-          //   fontStyles={['']}
-          text={"--- MISSION - VISION ---"}
-        />
-      </AppHStack>
-      <AppHStack sx={{ flex: 1, width: "100%" }}>
+      {/* <AppHStack sx={{ flex: 1, maxWidth: "100%" }}>
         <ImageUploader />
-        {/* <Divider /> */}
         <Criteria />
-        {/* <Divider /> */}
-        {/* <Result /> */}
-      </AppHStack>
+        <Result />
+      </AppHStack> */}
+      <Grid container spacing={1}>
+        <Grid size={4}>
+          <ImageUploader />
+        </Grid>
+        <Grid size={4}>
+          <Criteria />
+        </Grid>
+        <Grid size={4}>
+          <Result />
+        </Grid>
+      </Grid>
+      {/* <AppHStack sx={{ flex: 1, maxWidth: "100%" }}>
+        <ImageUploader />
+        <Criteria />
+        <Result />
+      </AppHStack> */}
     </AppVStack>
   );
 }

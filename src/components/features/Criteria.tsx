@@ -4,9 +4,11 @@ import AppAccordian from "../mui/AppAccordian";
 import { useContext } from "react";
 import { LoginContext } from "../../context";
 import EmptyContainer from "./EmptyContainer";
+import AppLoader from "../others/AppLoader";
 
 export default function Criteria() {
-  const { promptResult } = useContext(LoginContext);
+  const { promptResult, loader } = useContext(LoginContext);
+  console.log(promptResult);
   return (
     <AppVStack
       sx={{
@@ -15,16 +17,22 @@ export default function Criteria() {
         padding: "10px",
         minWidth: "40%",
         maxHeight: "100%",
-        minHeight: "250px",
-        border: "1px dashed #bac2c3",
-        borderRadius: "30px",
+        minHeight: "480px",
+        border: "0px dashed #bac2c3",
+        borderRightWidth: "1px",
       }}
     >
-      <AppText variant="h5" text="Criteria" sx={{ alignSelf: "flex-start" }} />
-      {promptResult?.id ? (
+      <AppText
+        variant="h5"
+        text="Criteria"
+        sx={{ alignSelf: "flex-start", marginBottom: "30px" }}
+      />
+      {loader ? (
+        <AppLoader />
+      ) : promptResult?.id ? (
         <AppAccordian
           name={promptResult?.criteria_name}
-          desc={promptResult?.criteria}
+          desc={promptResult?.critera}
           prediction={promptResult?.prediction}
         />
       ) : (

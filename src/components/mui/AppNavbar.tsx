@@ -4,11 +4,15 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
+import { LogoIcon } from "../../assets";
+import AppImage from "./AppImage";
+import AppHStack from "./AppHStack";
+import AppText from "./AppText";
 
 export default function AppNavbar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar sx={{ bgcolor: "#fff", borderRadius: "40px" }} position="static">
         <Toolbar>
           <IconButton
             size="large"
@@ -16,11 +20,21 @@ export default function AppNavbar() {
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
-          ></IconButton>
+          >
+            <AppHStack sx={{ gap: "40px" }}>
+              <AppImage src={LogoIcon} sx={{ width: "160px" }} />
+              <AppText
+                variant="subtitle2"
+                fontStyles={["14px", "18px", "500"]}
+                sx={{ color: "#0000ff" }}
+                //   fontStyles={['']}
+                text={"--- MISSION - VISION ---"}
+              />
+            </AppHStack>
+          </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             News
           </Typography>
-          <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
     </Box>

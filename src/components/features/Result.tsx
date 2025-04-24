@@ -5,9 +5,11 @@ import { LoginContext } from "../../context";
 import AppImage from "../mui/AppImage";
 import EmptyContainer from "./EmptyContainer";
 import AppHStack from "../mui/AppHStack";
+import AppLoader from "../others/AppLoader";
+import { Box } from "@mui/material";
 
 export default function Result() {
-  const { promptResult } = useContext(LoginContext);
+  const { promptResult, loader } = useContext(LoginContext);
 
   return (
     <AppVStack
@@ -16,6 +18,7 @@ export default function Result() {
         gap: "7px",
         padding: "10px",
         minWidth: "40%",
+        maxWidth: "100%",
         maxHeight: "100%",
         minHeight: "400px",
       }}
@@ -23,15 +26,17 @@ export default function Result() {
       <AppText
         variant="h5"
         text="Assessment Results"
-        sx={{ alignSelf: "flex-start" }}
+        sx={{ alignSelf: "flex-start", marginBottom: "2rem" }}
       />
-      {promptResult?.id ? (
-        <AppVStack sx={{ gap: "6px" }}>
+      {loader ? (
+        <AppLoader />
+      ) : promptResult?.id ? (
+        <AppVStack sx={{ gap: "6px", width: "100%" }}>
           <AppImage
             src={promptResult?.bbox_image}
-            sx={{ width: "380px", height: "240px" }}
+            sx={{ width: "80%", height: "240px" }}
           />
-          <AppHStack sx={{ width: "60%", justifyContent: "space-between" }}>
+          {/* <AppHStack sx={{ width: "60%", justifyContent: "space-between" }}>
             <AppText text={"Prediction: "} />
             <AppText text={promptResult?.prediction} />
           </AppHStack>
@@ -42,22 +47,45 @@ export default function Result() {
           <AppHStack sx={{ width: "60%", justifyContent: "space-between" }}>
             <AppText text={"Clean: "} />
             <AppText text={promptResult?.clean_good ? "Good" : "Bad"} />
-          </AppHStack>
-          <AppHStack sx={{ width: "60%", justifyContent: "space-between" }}>
-            <AppText text={"Image Quality: "} />
+          </AppHStack> */}
+          <AppHStack sx={{ width: "50%", justifyContent: "space-between" }}>
+            <AppText variant="h6" text={"Image Quality: "} />
             <AppText text={promptResult?.image_quality} />
           </AppHStack>
-          <AppHStack sx={{ width: "60%", justifyContent: "space-between" }}>
-            <AppText text={"Asset Condition: "} />
+          <AppHStack sx={{ width: "50%", justifyContent: "space-between" }}>
+            <AppText variant="h6" text={"Asset Condition: "} />
             <AppText text={promptResult?.asset_condition} />
           </AppHStack>
-          <AppHStack sx={{ width: "60%", justifyContent: "space-between" }}>
-            <AppText text={"Asset Description: "} />
-            <AppText text={promptResult?.asset_condition_desc} />
+          <AppHStack
+            sx={{
+              width: "100%",
+              justifyContent: "space-between",
+            }}
+          >
+            <AppText
+              sx={{ alignSelf: "flex-start" }}
+              variant="h6"
+              text={"Asset Description: "}
+            />
+            <Box sx={{ width: "59%" }}>
+              <AppText
+                sx={{ width: "100%", textAlign: "left" }}
+                text={promptResult?.asset_condition_desc}
+              />
+            </Box>
           </AppHStack>
-          <AppHStack sx={{ width: "60%", justifyContent: "space-between" }}>
-            <AppText text={"Prediction Description: "} />
-            <AppText text={promptResult?.prediction_desc} />
+          <AppHStack sx={{ width: "100%", justifyContent: "space-between" }}>
+            <AppText
+              sx={{ alignSelf: "flex-start", textAlign: "left" }}
+              variant="h6"
+              text={"Prediction Description: "}
+            />
+            <Box sx={{ width: "69%" }}>
+              <AppText
+                sx={{ width: "100%", textAlign: "left" }}
+                text={promptResult?.prediction_desc}
+              />
+            </Box>
           </AppHStack>
         </AppVStack>
       ) : (

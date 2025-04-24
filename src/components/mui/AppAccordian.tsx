@@ -59,6 +59,7 @@ export default function AppAccordian({
   desc,
   prediction,
 }: AppAccordianProps) {
+  console.log(name, desc);
   const [expanded, setExpanded] = React.useState<string | false>("panel1");
 
   const handleChange =
@@ -67,21 +68,20 @@ export default function AppAccordian({
     };
 
   return (
-    <div>
-      <Accordion
-        expanded={expanded === "panel1"}
-        onChange={handleChange("panel1")}
-      >
-        <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-          {/* <AppHStack sx={{ width: "100%" }}> */}
-          <Typography component="span">{name}</Typography>
-          {/* <AppText text={prediction} /> */}
-          {/* </AppHStack> */}
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>{desc}</Typography>
-        </AccordionDetails>
-      </Accordion>
-    </div>
+    <Accordion
+      sx={{ width: "100%" }}
+      expanded={expanded === "panel1"}
+      onChange={handleChange("panel1")}
+    >
+      <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
+        {/* <AppHStack sx={{ width: "100%" }}> */}
+        <Typography component="span">{name}</Typography>
+        {/* <AppText text={prediction} /> */}
+        {/* </AppHStack> */}
+      </AccordionSummary>
+      <AccordionDetails>
+        <Typography>{desc}</Typography>
+      </AccordionDetails>
+    </Accordion>
   );
 }

@@ -67,6 +67,7 @@ export default function ImageUploader() {
   }, [data]);
 
   const handleSubmit = () => {
+    console.log(imageType);
     if (imageType?.asset_id && imageType?.input_image_id) {
       mutateAssessment(imageType);
       setLoader(true);
@@ -83,14 +84,18 @@ export default function ImageUploader() {
         padding: "10px",
         minWidth: "40%",
         maxHeight: "100%",
-        minHeight: "400px",
-        border: "1px dashed #bac2c3",
-        borderRadius: "30px",
+        minHeight: "486px",
+        border: "0px solid #bac2c3",
+        borderRightWidth: "1px",
         // bgcolor: "red",
       }}
     >
-      <ToastContainer />
-      <AppText variant="h5" text="Input" sx={{ alignSelf: "flex-start" }} />
+      <ToastContainer position="bottom-center" />
+      <AppText
+        variant="h5"
+        text="Input"
+        sx={{ alignSelf: "flex-start", marginBottom: "16px" }}
+      />
       <AppHStack sx={{ justifyContent: "space-between", width: "100%" }}>
         <AppSelect
           options={options}
@@ -98,7 +103,26 @@ export default function ImageUploader() {
             setImageType({ ...imageType, asset_id: selected?.id })
           }
         />
-        <AppButton sx={{ color: "red", bgcolor: "skyblue" }}>Reset</AppButton>
+        <AppButton
+          sx={{
+            color: "red",
+            borderRadius: "20px",
+            "&:hover": {
+              backgroundColor: "#eb7f86",
+              color: "#fff",
+            },
+          }}
+          handleClick={() => {
+            setImageType({
+              input_image_id: "",
+              asset_id: "",
+            });
+            setPromptResult("");
+            setFiles("");
+          }}
+        >
+          Reset
+        </AppButton>
       </AppHStack>
       <AppDropZone
         file={files}
@@ -111,7 +135,17 @@ export default function ImageUploader() {
       <AppButton
         loading={loader}
         handleClick={handleSubmit}
-        sx={{ bgcolor: "skyblue", alignSelf: "flex-end" }}
+        sx={{
+          bgcolor: "skyblue",
+          alignSelf: "flex-end",
+          color: "white",
+          height: "35px",
+          fontWeight: "bold",
+          borderRadius: "20px",
+          "&:hover": {
+            backgroundColor: "#007fff",
+          },
+        }}
       >
         Run Assessment
       </AppButton>

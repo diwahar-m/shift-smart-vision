@@ -30,7 +30,7 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <Box sx={{ maxWidth: "100%", bgcolor: "blue" }}>
+    <Box sx={{ maxWidth: "100%" }}>
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
       </QueryClientProvider>

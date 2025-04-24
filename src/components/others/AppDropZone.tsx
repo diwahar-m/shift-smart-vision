@@ -91,7 +91,9 @@ export default function AppDropZone({ file, setFile, setFiles }: any) {
         <div className="container">
           <div {...getRootProps({ style })}>
             <input {...getInputProps()} />
-            <p>Drag 'n' drop some files here, or click to select files</p>
+            <p style={{ color: "#0000ff" }}>
+              Drag 'n' drop some files here, or click to select files
+            </p>
           </div>
         </div>
       )}

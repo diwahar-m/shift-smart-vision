@@ -17,14 +17,32 @@ export default function Login() {
   }, []);
   console.log(user);
   return (
-    <AppCenterStack sx={{ width: "100%", height: "100%" }}>
-      <AppVStack sx={{ gap: "5px", alignItems: "center" }}>
+    <AppVStack
+      sx={{
+        whiteSpaceTrimidth: "100%",
+        height: "100%",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <AppVStack
+        sx={{
+          gap: "5px",
+          alignItems: "center",
+          border: "1px solid skyblue",
+          padding: "40px 20px",
+          borderRadius: "10px",
+          boxShadow: "5px 10px 50px skyblue",
+        }}
+      >
         <AppImage
           src={LogoIcon}
-          sx={{ width: "160px", marginBottom: "10px" }}
+          sx={{ width: "170px", marginBottom: "10px" }}
         />
         <AppText
           variant="subtitle2"
+          fontStyles={["14px", "18px", 500]}
+          sx={{ color: "#0000ff" }}
           //   fontStyles={['']}
           text={"--- MISSION - VISION ---"}
         />
@@ -50,16 +68,29 @@ export default function Login() {
           <AppText variant="subtitle2" sx={{ color: "red" }} text={error} />
         )}
         <AppButton
-          sx={{ bgcolor: "skyblue", width: "92%" }}
+          id="login"
+          sx={{
+            bgcolor: "skyblue",
+            width: "92%",
+            color: "white",
+            height: "35px",
+            fontWeight: "bold",
+            borderRadius: "20px",
+            "&:hover": {
+              backgroundColor: "#007fff",
+            },
+          }}
           handleClick={() => {
             if (user?.username && user?.password === "2A2Rs75R")
               navigate("/dashboard");
-            else setError("Invalid credentials");
+            else {
+              setError("Invalid credentials");
+            }
           }}
         >
           Login
         </AppButton>
       </AppVStack>
-    </AppCenterStack>
+    </AppVStack>
   );
 }

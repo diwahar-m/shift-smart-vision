@@ -11,6 +11,7 @@ interface AppButtonProps {
   tooltipText?: string;
   handleClick?: () => void;
   loading?: boolean;
+  id?: string;
 }
 
 const AppButton = ({
@@ -22,12 +23,14 @@ const AppButton = ({
   tooltipText,
   handleClick,
   loading,
+  id,
   ...rest
 }: AppButtonProps) => {
   return (
     <>
       <Tooltip title={tooltipText}>
         <Button
+          id={id}
           loading={loading}
           onClick={handleClick}
           sx={{

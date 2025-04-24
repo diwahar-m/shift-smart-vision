@@ -25,6 +25,8 @@ export default function AppInput({
       autoComplete="off"
     >
       <TextField
+        size="small"
+        sx={{ borderRadius: "50px" }}
         value={value}
         onChange={onChange}
         id="outlined-basic"
