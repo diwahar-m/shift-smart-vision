@@ -7,6 +7,7 @@ import { useContext } from "react";
 import { LoginContext } from "../../context";
 import EmptyContainer from "./EmptyContainer";
 import AppLoader from "../others/AppLoader";
+import { Box } from "@mui/material";
 
 export default function Criteria() {
   const { promptResult, loader } = useContext<any>(LoginContext);
@@ -29,7 +30,9 @@ export default function Criteria() {
         sx={{ alignSelf: "flex-start", marginBottom: "30px" }}
       />
       {loader ? (
-        <AppLoader />
+        <Box sx={{ height: "300px" }}>
+          <AppLoader />
+        </Box>
       ) : promptResult?.id ? (
         <AppAccordian
           name={promptResult?.criteria_name}

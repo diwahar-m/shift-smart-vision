@@ -31,7 +31,9 @@ export default function Result() {
         sx={{ alignSelf: "flex-start", marginBottom: "2rem" }}
       />
       {loader ? (
-        <AppLoader />
+        <Box sx={{ height: "300px" }}>
+          <AppLoader />
+        </Box>
       ) : promptResult?.id ? (
         <AppVStack sx={{ gap: "6px", width: "100%" }}>
           <AppImage
