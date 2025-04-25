@@ -6,14 +6,17 @@ export default function EmptyContainer() {
     <AppVStack
       sx={{
         width: "100%",
-        minHeight: "400px",
+        minHeight: "300px",
         justifyContent: "center",
         alignItems: "center",
         flexShrink: 1,
       }}
     >
-      <AppText variant="h6" text={"Upload Image on the Left side "} />
-      <AppText variant="h6" text={"And Run the Assessment"} />
+      <AppText
+        variant="h6"
+        sx={{ color: "#a1a1aa" }}
+        text={"Upload Image on the Left side and run the assessment "}
+      />
     </AppVStack>
   );
 }

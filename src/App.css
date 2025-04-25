@@ -3,6 +3,7 @@
   max-width: 100vw;
   /* padding: 15px; */
   text-align: center;
+  overflow-x:hidden;
 }
 
 .logo {

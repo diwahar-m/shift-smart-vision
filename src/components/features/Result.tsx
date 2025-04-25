@@ -2,33 +2,54 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import AppVStack from "../mui/AppVStack";
 import AppText from "../mui/AppText";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { LoginContext } from "../../context";
 import AppImage from "../mui/AppImage";
 import EmptyContainer from "./EmptyContainer";
-import AppHStack from "../mui/AppHStack";
 import AppLoader from "../others/AppLoader";
 import { Box } from "@mui/material";
+import AssessmentCard from "./AssessmentCard";
 
 export default function Result() {
   const { promptResult, loader } = useContext<any>(LoginContext);
+  const [predictions, setPredictions] = useState<any>([]);
+
+  useEffect(() => {
+    const prediction = [
+      {
+        title: "Image Quality Assessment",
+        condition: promptResult?.image_quality,
+        desc: promptResult?.image_quality_desc,
+      },
+      {
+        title: "Asset Condition Assessment",
+        condition: promptResult?.asset_condition,
+        desc: promptResult?.asset_condition_desc,
+      },
+      {
+        title: "Prediction",
+        condition: promptResult?.prediction,
+        desc: promptResult?.prediction_desc,
+      },
+    ];
+    setPredictions(prediction);
+  }, [promptResult]);
 
   return (
     <AppVStack
       sx={{
         alignItems: "center",
-        gap: "7px",
-        padding: "10px",
-        minWidth: "40%",
-        maxWidth: "100%",
-        maxHeight: "100%",
-        minHeight: "400px",
+        gap: "15px",
+        width: "92%",
+        minHeight: "486px",
+        padding: "0 30px",
       }}
     >
       <AppText
-        variant="h5"
+        variant="h3"
         text="Assessment Results"
-        sx={{ alignSelf: "flex-start", marginBottom: "2rem" }}
+        fontStyles={["1.5rem", "1rem", "600"]}
+        sx={{ alignSelf: "flex-start", marginBottom: "16px" }}
       />
       {loader ? (
         <Box sx={{ height: "300px" }}>
@@ -36,22 +57,42 @@ export default function Result() {
         </Box>
       ) : promptResult?.id ? (
         <AppVStack sx={{ gap: "6px", width: "100%" }}>
-          <AppImage
-            src={promptResult?.bbox_image}
-            sx={{ width: "80%", height: "240px" }}
-          />
-          {/* <AppHStack sx={{ width: "60%", justifyContent: "space-between" }}>
-            <AppText text={"Prediction: "} />
-            <AppText text={promptResult?.prediction} />
-          </AppHStack>
-          <AppHStack sx={{ width: "60%", justifyContent: "space-between" }}>
-            <AppText text={"Condition: "} />
-            <AppText text={promptResult?.condition_good ? "Good" : "Bad"} />
-          </AppHStack>
-          <AppHStack sx={{ width: "60%", justifyContent: "space-between" }}>
-            <AppText text={"Clean: "} />
-            <AppText text={promptResult?.clean_good ? "Good" : "Bad"} />
-          </AppHStack> */}
+          {predictions?.length ? (
+            predictions?.map((_: any) => (
+              <AssessmentCard
+                title={_?.title}
+                condition={_?.condition}
+                desc={_?.desc}
+              />
+            ))
+          ) : (
+            <></>
+          )}
+          <AppVStack
+            sx={{
+              width: "100%",
+              padding: "9px 0",
+              gap: "6px",
+            }}
+          >
+            <AppText
+              sx={{ alignSelf: "flex-start" }}
+              variant="h4"
+              fontStyles={["0.9rem", "1.25rem", "500"]}
+              text={"Processed Image"}
+            />
+            <AppImage
+              src={promptResult?.bbox_image}
+              sx={{
+                width: "377px",
+                height: "240px",
+                borderRadius: "10px",
+                objectFit: "cover",
+              }}
+            />
+          </AppVStack>
+
+          {/* 
           <AppHStack sx={{ width: "47%", justifyContent: "space-between" }}>
             <AppText
               fontStyles={["14px", "22px", "600"]}
@@ -102,7 +143,7 @@ export default function Result() {
                 text={promptResult?.prediction_desc}
               />
             </Box>
-          </AppHStack>
+          </AppHStack> */}
         </AppVStack>
       ) : (
         <EmptyContainer />

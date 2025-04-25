@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import AppVStack from "../mui/AppVStack";
-import AppSelect from "../others/AppSelect";
 import AppDropZone from "../others/AppDropZone";
 import AppHStack from "../mui/AppHStack";
 import AppButton from "../mui/AppButton";
@@ -15,9 +14,12 @@ import {
   POST_PROCESS_IMAGE_API,
 } from "../../api/url";
 import { useContext, useEffect, useState } from "react";
-import { formatSelectOptions } from "../../constant/utils";
 import makePostRequest from "../../api/makePostRequest";
 import { LoginContext } from "../../context";
+import AppSelectNew from "../others/AppSelectNew";
+import { Box } from "@mui/material";
+import { Sparkles } from "lucide-react";
+import { formatSelectOptions } from "@/constant/utils";
 
 export default function ImageUploader() {
   const [options, setOptions] = useState<any>([]);
@@ -81,50 +83,34 @@ export default function ImageUploader() {
     <AppVStack
       sx={{
         alignItems: "center",
-        gap: "7px",
-        padding: "10px",
-        minWidth: "40%",
-        maxHeight: "100%",
+        gap: "15px",
+        width: "92%",
         minHeight: "486px",
-        border: "0px solid #bac2c3",
-        borderRightWidth: "1px",
-        // bgcolor: "red",
+        padding: "0 30px",
       }}
     >
-      <ToastContainer position="bottom-center" />
       <AppText
-        variant="h5"
+        variant="h3"
+        fontStyles={["1.5rem", "1rem", "600"]}
         text="Input"
         sx={{ alignSelf: "flex-start", marginBottom: "16px" }}
       />
-      <AppHStack sx={{ justifyContent: "space-between", width: "100%" }}>
-        <AppSelect
+
+      {/* <AppSelect
           options={options}
           onChange={(selected: any) =>
             setImageType({ ...imageType, asset_id: selected?.id })
           }
+        /> */}
+      <Box sx={{ alignSelf: "flex-start" }}>
+        <AppSelectNew
+          value={imageType?.asset_id}
+          options={options}
+          onChange={(selected: any) =>
+            setImageType({ ...imageType, asset_id: selected })
+          }
         />
-        <AppButton
-          sx={{
-            color: "red",
-            borderRadius: "20px",
-            "&:hover": {
-              backgroundColor: "#eb7f86",
-              color: "#fff",
-            },
-          }}
-          handleClick={() => {
-            setImageType({
-              input_image_id: "",
-              asset_id: "",
-            });
-            setPromptResult("");
-            setFiles("");
-          }}
-        >
-          Reset
-        </AppButton>
-      </AppHStack>
+      </Box>
       <AppDropZone
         file={files}
         setFile={(file: any, formData: any) => {
@@ -138,18 +124,44 @@ export default function ImageUploader() {
         handleClick={handleSubmit}
         sx={{
           bgcolor: "skyblue",
-          alignSelf: "flex-end",
+          // alignSelf: "flex-end",
           color: "white",
-          height: "35px",
+          height: "38px",
           fontWeight: "bold",
-          borderRadius: "20px",
+          width: "100%",
+          borderRadius: "10px",
           "&:hover": {
             backgroundColor: "#007fff",
           },
         }}
       >
-        Run Assessment
+        <AppHStack sx={{ gap: "5px" }}>
+          <Sparkles size="20" />
+          Run Assessment
+        </AppHStack>
       </AppButton>
+      <AppButton
+        sx={{
+          height: "38px",
+          fontWeight: "bold",
+          width: "100%",
+          borderRadius: "10px",
+
+          backgroundColor: "#eb7f86",
+          color: "#fff",
+        }}
+        handleClick={() => {
+          setImageType({
+            input_image_id: "",
+            asset_id: "",
+          });
+          setPromptResult("");
+          setFiles("");
+        }}
+      >
+        Clear
+      </AppButton>
+      <ToastContainer position="bottom-center" />
     </AppVStack>
   );
 }

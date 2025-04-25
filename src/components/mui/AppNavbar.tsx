@@ -18,16 +18,21 @@ export default function AppNavbar() {
             edge="start"
             color="inherit"
             aria-label="menu"
-            sx={{ mr: 2 }}
+            sx={{
+              mr: 2,
+              "&:hover": {
+                backgroundColor: "transparent",
+              },
+            }}
           >
             <AppHStack sx={{ gap: "40px" }}>
               <AppImage src={LogoIcon} sx={{ width: "160px" }} />
               <AppText
                 variant="subtitle2"
                 fontStyles={["14px", "18px", "500"]}
-                sx={{ color: "#0000ff" }}
+                sx={{ color: "#0000ff", fontFamily: "Figtree" }}
                 //   fontStyles={['']}
-                text={"--- MISSION - VISION ---"}
+                text={" MISSION - VISION "}
               />
             </AppHStack>
           </IconButton>

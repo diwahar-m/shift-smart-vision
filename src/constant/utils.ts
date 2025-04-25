@@ -3,5 +3,5 @@
 
 
 export function formatSelectOptions(option: any){
-    return {value: option?.type, label: option?.type, id: option?.id}
+    return {value: option?.type, label: option?.type?.replaceAll("_"," "), id: option?.id}
 }

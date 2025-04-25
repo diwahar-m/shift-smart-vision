@@ -73,27 +73,40 @@ export default function AppDropZone({ file, setFile, setFiles }: any) {
   return (
     <>
       {file?.file ? (
-        <Box sx={{ position: "relative" }}>
-          <AppImage src={file?.file} sx={{ width: "377px", height: "240px" }} />
+        <Box sx={{ position: "relative", borderRadius: "20px" }}>
+          <AppImage
+            src={file?.file}
+            sx={{
+              width: "377px",
+              height: "240px",
+              borderRadius: "10px",
+              objectFit: "cover",
+            }}
+          />
           <Box
             sx={{
               position: "absolute",
-              top: "4px",
-              right: "4px",
+              top: "8px",
+              right: "8px",
               cursor: "pointer",
+              width: "38px",
+              height: "38px",
+              backgroundColor: "#09090b",
+              borderRadius: "10px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
             }}
             onClick={() => setFiles("")}
           >
-            <X color="red" />
+            <X color="#fff" />
           </Box>
         </Box>
       ) : (
         <div className="container">
           <div {...getRootProps({ style: style as any })}>
             <input {...getInputProps()} />
-            <p style={{ color: "#0000ff" }}>
-              Drag 'n' drop some files here, or click to select files
-            </p>
+            <p style={{}}>Drop a file, or click to select files</p>
           </div>
         </div>
       )}

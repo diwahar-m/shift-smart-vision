@@ -45,7 +45,7 @@ export default function Login() {
           fontStyles={["14px", "18px", "500"]}
           sx={{ color: "#0000ff" }}
           //   fontStyles={['']}
-          text={"--- MISSION - VISION ---"}
+          text={"MISSION - VISION"}
         />
 
         <AppInput

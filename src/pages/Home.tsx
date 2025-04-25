@@ -9,12 +9,8 @@ export default function Home() {
   return (
     <AppVStack sx={{ gap: "30px", maxWidth: "100%", padding: "20px" }}>
       <AppNavbar />
-      {/* <AppHStack sx={{ flex: 1, maxWidth: "100%" }}>
-        <ImageUploader />
-        <Criteria />
-        <Result />
-      </AppHStack> */}
-      <Grid container spacing={1}>
+
+      <Grid container sx={{ marginTop: "30px" }}>
         <Grid size={4}>
           <ImageUploader />
         </Grid>
@@ -25,11 +21,6 @@ export default function Home() {
           <Result />
         </Grid>
       </Grid>
-      {/* <AppHStack sx={{ flex: 1, maxWidth: "100%" }}>
-        <ImageUploader />
-        <Criteria />
-        <Result />
-      </AppHStack> */}
     </AppVStack>
   );
 }
