@@ -33,7 +33,7 @@ export default function Login() {
           border: "1px solid skyblue",
           padding: "40px 20px",
           borderRadius: "10px",
-          boxShadow: "5px 10px 50px skyblue",
+          boxShadow: "5px 10px 15px skyblue",
         }}
       >
         <AppImage
@@ -43,9 +43,9 @@ export default function Login() {
         <AppText
           variant="subtitle2"
           fontStyles={["14px", "18px", "500"]}
-          sx={{ color: "#0000ff" }}
+          sx={{ color: "#a1a1aa" }}
           //   fontStyles={['']}
-          text={"MISSION - VISION"}
+          text={"MACHINE - VISION"}
         />
 
         <AppInput
@@ -82,7 +82,10 @@ export default function Login() {
             },
           }}
           handleClick={() => {
-            if (user?.username && user?.password === "2A2Rs75R")
+            if (
+              user?.username === "shiftsmart" &&
+              user?.password === "2A2Rs75R"
+            )
               navigate("/dashboard");
             else {
               setError("Invalid credentials");

@@ -104,6 +104,7 @@ export default function ImageUploader() {
         /> */}
       <Box sx={{ alignSelf: "flex-start" }}>
         <AppSelectNew
+          label={"Asset Type "}
           value={imageType?.asset_id}
           options={options}
           onChange={(selected: any) =>
@@ -111,14 +112,25 @@ export default function ImageUploader() {
           }
         />
       </Box>
-      <AppDropZone
-        file={files}
-        setFile={(file: any, formData: any) => {
-          setFiles(file);
-          mutate(formData);
-        }}
-        setFiles={setFiles}
-      />
+      <AppVStack sx={{ width: "100%", gap: "10px" }}>
+        <AppText
+          sx={{ color: "#a1a1a1", textAlign: "left" }}
+          text={"Upload Image"}
+        />
+
+        <AppDropZone
+          file={files}
+          setFile={(file: any, formData: any) => {
+            setFiles(file);
+            mutate(formData);
+          }}
+          removeImage={() => {
+            setFiles("");
+            setImageType({ ...imageType, input_image_id: "" });
+          }}
+          setFiles={setFiles}
+        />
+      </AppVStack>
       <AppButton
         loading={loader}
         handleClick={handleSubmit}

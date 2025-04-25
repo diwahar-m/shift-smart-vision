@@ -27,6 +27,7 @@ const AppText = ({
       sx={{
         textTransform: "none",
         fontSize,
+        fontFamily: "Figtree",
         lineHeight,
         color: "#000",
         fontWeight,

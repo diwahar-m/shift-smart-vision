@@ -30,9 +30,9 @@ export default function AppNavbar() {
               <AppText
                 variant="subtitle2"
                 fontStyles={["14px", "18px", "500"]}
-                sx={{ color: "#0000ff", fontFamily: "Figtree" }}
+                sx={{ color: "#a1a1a1", fontFamily: "Figtree" }}
                 //   fontStyles={['']}
-                text={" MISSION - VISION "}
+                text={" MACHINE - VISION "}
               />
             </AppHStack>
           </IconButton>

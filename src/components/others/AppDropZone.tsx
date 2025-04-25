@@ -37,7 +37,7 @@ const rejectStyle = {
   borderColor: "#ff1744",
 };
 
-export default function AppDropZone({ file, setFile, setFiles }: any) {
+export default function AppDropZone({ file, setFile, removeImage }: any) {
   console.log("file", file);
   const { getRootProps, getInputProps, isFocused, isDragAccept, isDragReject } =
     useDropzone({
@@ -97,7 +97,7 @@ export default function AppDropZone({ file, setFile, setFiles }: any) {
               justifyContent: "center",
               alignItems: "center",
             }}
-            onClick={() => setFiles("")}
+            onClick={removeImage}
           >
             <X color="#fff" />
           </Box>
