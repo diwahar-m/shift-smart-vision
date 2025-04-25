@@ -50,27 +50,37 @@ export default function Result() {
             <AppText text={"Clean: "} />
             <AppText text={promptResult?.clean_good ? "Good" : "Bad"} />
           </AppHStack> */}
-          <AppHStack sx={{ width: "50%", justifyContent: "space-between" }}>
-            <AppText variant="h6" text={"Image Quality: "} />
-            <AppText text={promptResult?.image_quality} />
+          <AppHStack sx={{ width: "47%", justifyContent: "space-between" }}>
+            <AppText
+              fontStyles={["14px", "22px", "600"]}
+              variant="h6"
+              text={"Image Quality: "}
+            />
+            <AppText variant="subtitle2" text={promptResult?.image_quality} />
           </AppHStack>
-          <AppHStack sx={{ width: "50%", justifyContent: "space-between" }}>
-            <AppText variant="h6" text={"Asset Condition: "} />
-            <AppText text={promptResult?.asset_condition} />
+          <AppHStack sx={{ width: "47%", justifyContent: "space-between" }}>
+            <AppText
+              fontStyles={["14px", "22px", "600"]}
+              variant="h6"
+              text={"Asset Condition: "}
+            />
+            <AppText variant="subtitle2" text={promptResult?.asset_condition} />
           </AppHStack>
           <AppHStack
             sx={{
-              width: "100%",
+              width: "97%",
               justifyContent: "space-between",
             }}
           >
             <AppText
               sx={{ alignSelf: "flex-start" }}
               variant="h6"
+              fontStyles={["14px", "22px", "600"]}
               text={"Asset Description: "}
             />
             <Box sx={{ width: "59%" }}>
               <AppText
+                variant="subtitle2"
                 sx={{ width: "100%", textAlign: "left" }}
                 text={promptResult?.asset_condition_desc}
               />
@@ -78,12 +88,14 @@ export default function Result() {
           </AppHStack>
           <AppHStack sx={{ width: "100%", justifyContent: "space-between" }}>
             <AppText
-              sx={{ alignSelf: "flex-start", textAlign: "left" }}
+              sx={{ alignSelf: "flex-start", textAlign: "left", width: "45%" }}
               variant="h6"
+              fontStyles={["14px", "22px", "600"]}
               text={"Prediction Description: "}
             />
             <Box sx={{ width: "69%" }}>
               <AppText
+                variant="subtitle2"
                 sx={{ width: "100%", textAlign: "left" }}
                 text={promptResult?.prediction_desc}
               />

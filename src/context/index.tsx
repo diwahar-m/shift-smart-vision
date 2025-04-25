@@ -14,8 +14,14 @@ export default function ContextLayout() {
   console.log("promptResult", promptResult);
 
   useEffect(() => {
-    if (user?.password === "2A2Rs75R") {
+    localStorage.setItem("username", user?.username);
+  }, [user]);
+
+  useEffect(() => {
+    if (localStorage.getItem("username")) {
       navigate("/dashboard");
+    } else {
+      navigate("/");
     }
   }, []);
 
