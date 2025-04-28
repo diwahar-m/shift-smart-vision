@@ -6,6 +6,9 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { CircleCheckBig } from "lucide-react";
+import AppHStack from "../mui/AppHStack";
+import AppText from "../mui/AppText";
 
 interface AppAccordianProps {
   name?: string;
@@ -45,10 +48,21 @@ export default function AppAccordianNew({
               id={_?.id}
               style={{
                 backgroundColor:
-                  selectedId == _?.id?.toString() ? "#ccbcbc" : "",
+                  selectedId == _?.id?.toString() ? "#eedbdb" : "",
               }}
             >
-              {_?.criteria_name}
+              {/* {_?.criteria_name + selectedId == _?.id?.toString()
+                ? "#ccbcbc"
+                : ""} */}
+              {selectedId == _?.id?.toString() ? (
+                <AppHStack sx={{ gap: "10px" }}>
+                  <AppText text={_?.criteria_name} />
+                  <CircleCheckBig size="18" color="#1d582c" />
+                  {/* <CircleCheckBig /> */}
+                </AppHStack>
+              ) : (
+                _?.criteria_name
+              )}
             </AccordionTrigger>
             <AccordionContent
               style={{

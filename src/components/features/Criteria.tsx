@@ -6,6 +6,7 @@ import { useContext, useEffect } from "react";
 import { LoginContext } from "../../context";
 import EmptyContainer from "./EmptyContainer";
 import AppAccordianNew from "../others/AppAccordianNew";
+import { Box } from "@mui/material";
 
 export default function Criteria() {
   const { options, imageType, setImageType } = useContext<any>(LoginContext);
@@ -67,7 +68,9 @@ export default function Criteria() {
           }
         </div>
       ) : (
-        <EmptyContainer />
+        <Box sx={{ marginTop: "52px" }}>
+          <EmptyContainer />
+        </Box>
       )}
     </AppVStack>
   );

@@ -9,9 +9,12 @@ import EmptyContainer from "./EmptyContainer";
 import AppLoader from "../others/AppLoader";
 import { Box } from "@mui/material";
 import AssessmentCard from "./AssessmentCard";
+import AppButton from "../mui/AppButton";
+import AppHStack from "../mui/AppHStack";
+import { Sparkles } from "lucide-react";
 
-export default function Result() {
-  const { promptResult, loader } = useContext<any>(LoginContext);
+export default function Result({ handleSubmit }: any) {
+  const { promptResult, loader, imageType } = useContext<any>(LoginContext);
   const [predictions, setPredictions] = useState<any>([]);
 
   useEffect(() => {
@@ -47,10 +50,53 @@ export default function Result() {
     >
       <AppText
         variant="h3"
-        text="Assessment Results"
+        text="Assessment"
         fontStyles={["1.5rem", "1rem", "600"]}
-        sx={{ alignSelf: "flex-start", marginBottom: "16px" }}
+        sx={{ alignSelf: "flex-start", marginBottom: "5px" }}
       />
+      <AppText
+        variant="subtitle2"
+        text="Please choose category, image and criteria before you run the assessment"
+        sx={{
+          alignSelf: "flex-start",
+          marginBottom: "4px",
+          textAlign: "left",
+          color: "#656569",
+        }}
+      />
+      {imageType?.asset_id &&
+      imageType?.input_image_id &&
+      imageType?.criteria_id ? (
+        <AppButton
+          loading={loader}
+          handleClick={handleSubmit}
+          isDisabled={
+            !imageType?.asset_id &&
+            !imageType?.input_image_id &&
+            !imageType?.criteria_id
+          }
+          sx={{
+            bgcolor: "skyblue",
+            // alignSelf: "flex-end",
+            color: "white",
+            height: "38px",
+            fontWeight: "bold",
+            width: "100%",
+            borderRadius: "10px",
+            "&:hover": {
+              backgroundColor: "#007fff",
+            },
+          }}
+        >
+          <AppHStack sx={{ gap: "5px" }}>
+            <Sparkles size="20" />
+            Run Assessment
+          </AppHStack>
+        </AppButton>
+      ) : (
+        <></>
+      )}
+
       {loader ? (
         <Box sx={{ height: "300px" }}>
           <AppLoader />

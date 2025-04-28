@@ -2,40 +2,34 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import AppVStack from "../mui/AppVStack";
 import AppDropZone from "../others/AppDropZone";
-import AppHStack from "../mui/AppHStack";
 import AppButton from "../mui/AppButton";
 import AppText from "../mui/AppText";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import makeGetRequest from "../../api/makeGetRequest";
-import { ToastContainer, toast } from "react-toastify";
-import {
-  GET_ASSET_LIST_API,
-  POST_IMAGE_UPLOAD_API,
-  POST_PROCESS_IMAGE_API,
-} from "../../api/url";
-import { useContext, useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import { GET_ASSET_LIST_API, POST_IMAGE_UPLOAD_API } from "../../api/url";
+import { useContext, useEffect } from "react";
 import makePostRequest from "../../api/makePostRequest";
 import { LoginContext } from "../../context";
 import AppSelectNew from "../others/AppSelectNew";
 import { Box } from "@mui/material";
-import { Sparkles } from "lucide-react";
 
 export default function ImageUploader() {
   // const [options, setOptions] = useState<any>([]);
-  const [files, setFiles] = useState<any>("");
+  // const [files, setFiles] = useState<any>("");
   // const [imageType, setImageType] = useState({
   //   input_image_id: "",
   //   asset_id: "",
   // });
 
   const {
-    loader,
-    setLoader,
     setPromptResult,
     options,
     setOptions,
     imageType,
     setImageType,
+    files,
+    setFiles,
   } = useContext<any>(LoginContext);
 
   const { data } = useQuery<any>({
@@ -55,39 +49,9 @@ export default function ImageUploader() {
     },
   });
 
-  const { mutate: mutateAssessment } = useMutation<any>({
-    mutationFn: (body) => makePostRequest(POST_PROCESS_IMAGE_API, body),
-    onSuccess: (data) => {
-      setLoader(false);
-      setPromptResult(data?.data);
-    },
-    onError: () => {
-      toast("Something went wrong");
-      setLoader(false);
-      setFiles("");
-    },
-  });
-
   useEffect(() => {
-    // const option: any = [];
-
-    // data?.data?.results?.map((_: any) => option.push(formatSelectOptions(_)));
     setOptions(data?.data?.results);
   }, [data]);
-
-  const handleSubmit = () => {
-    console.log(imageType);
-    if (
-      imageType?.asset_id &&
-      imageType?.input_image_id &&
-      imageType?.criteria_id
-    ) {
-      mutateAssessment(imageType);
-      setLoader(true);
-    } else {
-      toast("Please select all fields");
-    }
-  };
 
   const handleClear = () => {
     setPromptResult("");
@@ -154,7 +118,7 @@ export default function ImageUploader() {
           setFiles={setFiles}
         />
       </AppVStack>
-      <AppButton
+      {/* <AppButton
         loading={loader}
         handleClick={handleSubmit}
         isDisabled={
@@ -179,7 +143,7 @@ export default function ImageUploader() {
           <Sparkles size="20" />
           Run Assessment
         </AppHStack>
-      </AppButton>
+      </AppButton> */}
       <AppButton
         sx={{
           height: "38px",
@@ -201,7 +165,7 @@ export default function ImageUploader() {
       >
         Clear
       </AppButton>
-      <ToastContainer position="bottom-center" />
+      {/* <ToastContainer position="bottom-center" /> */}
     </AppVStack>
   );
 }
