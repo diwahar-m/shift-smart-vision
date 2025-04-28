@@ -38,7 +38,7 @@ export default function AppSelectNew({
         <SelectContent>
           {options?.map((_: any) => (
             <SelectItem key={_?.id} value={_?.id}>
-              {_?.label}
+              {_?.asset_name}
             </SelectItem>
           ))}
         </SelectContent>

@@ -15,7 +15,9 @@ export default function EmptyContainer() {
       <AppText
         variant="h6"
         sx={{ color: "#a1a1aa" }}
-        text={"Upload Image on the Left side and run the assessment "}
+        text={
+          "Please upload Image on the Left side, select the criteria and run the assessment "
+        }
       />
     </AppVStack>
   );

@@ -8,6 +8,8 @@ interface AssessmentCardProps {
   desc: string;
 }
 
+const badResults = ["Bad", "Fail"];
+
 export default function AssessmentCard({
   title,
   condition,
@@ -36,9 +38,16 @@ export default function AssessmentCard({
         />
         <AppText
           variant="subtitle1"
-          sx={{ color: condition == "good" ? "#22c55e" : "#FF0000" }}
+          sx={{
+            color: badResults?.includes(condition) ? "#FF0000" : "#22c55e",
+          }}
           fontStyles={["0.875rem", "1.25rem", "500"]}
-          text={condition == "good" ? "Good ✅" : "Bad ❌"}
+          //text={condition == "good" ? "Good ✅" : "Bad ❌"}
+          text={
+            badResults?.includes(condition)
+              ? `${condition + " ❌"}`
+              : `${condition + " ✅"}`
+          }
         />
       </AppHStack>
       <AppText

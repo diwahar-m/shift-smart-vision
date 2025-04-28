@@ -9,7 +9,12 @@ export default function ContextLayout() {
   const [user, setUser] = useState({ username: "", password: "" });
   const [loader, setLoader] = useState(false);
   const [promptResult, setPromptResult] = useState("");
+  const [options, setOptions] = useState([]);
   const navigate = useNavigate();
+  const [imageType, setImageType] = useState({
+    input_image_id: "",
+    asset_id: "",
+  });
 
   console.log("promptResult", promptResult);
 
@@ -35,6 +40,10 @@ export default function ContextLayout() {
           setLoader,
           promptResult,
           setPromptResult,
+          options,
+          setOptions,
+          imageType,
+          setImageType,
         }}
       >
         <Outlet />

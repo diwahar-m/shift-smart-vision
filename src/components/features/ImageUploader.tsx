@@ -19,17 +19,24 @@ import { LoginContext } from "../../context";
 import AppSelectNew from "../others/AppSelectNew";
 import { Box } from "@mui/material";
 import { Sparkles } from "lucide-react";
-import { formatSelectOptions } from "@/constant/utils";
 
 export default function ImageUploader() {
-  const [options, setOptions] = useState<any>([]);
+  // const [options, setOptions] = useState<any>([]);
   const [files, setFiles] = useState<any>("");
-  const [imageType, setImageType] = useState({
-    input_image_id: "",
-    asset_id: "",
-  });
+  // const [imageType, setImageType] = useState({
+  //   input_image_id: "",
+  //   asset_id: "",
+  // });
 
-  const { loader, setLoader, setPromptResult } = useContext<any>(LoginContext);
+  const {
+    loader,
+    setLoader,
+    setPromptResult,
+    options,
+    setOptions,
+    imageType,
+    setImageType,
+  } = useContext<any>(LoginContext);
 
   const { data } = useQuery<any>({
     queryKey: [GET_ASSET_LIST_API],
@@ -62,21 +69,30 @@ export default function ImageUploader() {
   });
 
   useEffect(() => {
-    const option: any = [];
+    // const option: any = [];
 
-    data?.data?.results?.map((_: any) => option.push(formatSelectOptions(_)));
-    setOptions(option);
+    // data?.data?.results?.map((_: any) => option.push(formatSelectOptions(_)));
+    setOptions(data?.data?.results);
   }, [data]);
 
   const handleSubmit = () => {
     console.log(imageType);
-    if (imageType?.asset_id && imageType?.input_image_id) {
-      // @ts-expect-error ""
+    if (
+      imageType?.asset_id &&
+      imageType?.input_image_id &&
+      imageType?.criteria_id
+    ) {
       mutateAssessment(imageType);
       setLoader(true);
     } else {
       toast("Please select all fields");
     }
+  };
+
+  const handleClear = () => {
+    setPromptResult("");
+    setFiles("");
+    setPromptResult(null);
   };
 
   return (
@@ -107,9 +123,16 @@ export default function ImageUploader() {
           label={"Asset Type "}
           value={imageType?.asset_id}
           options={options}
-          onChange={(selected: any) =>
-            setImageType({ ...imageType, asset_id: selected })
-          }
+          onChange={(selected: any) => {
+            console.log(selected);
+
+            setImageType({
+              asset_id: options?.find((_) => _?.id === selected)?.id,
+              input_image_id: null,
+              criteria_id: null,
+            });
+            handleClear();
+          }}
         />
       </Box>
       <AppVStack sx={{ width: "100%", gap: "10px" }}>
@@ -134,6 +157,11 @@ export default function ImageUploader() {
       <AppButton
         loading={loader}
         handleClick={handleSubmit}
+        isDisabled={
+          !imageType?.asset_id &&
+          !imageType?.input_image_id &&
+          !imageType?.criteria_id
+        }
         sx={{
           bgcolor: "skyblue",
           // alignSelf: "flex-end",
@@ -166,9 +194,9 @@ export default function ImageUploader() {
           setImageType({
             input_image_id: "",
             asset_id: "",
+            criteria_id: "",
           });
-          setPromptResult("");
-          setFiles("");
+          handleClear();
         }}
       >
         Clear

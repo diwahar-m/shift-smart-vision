@@ -2,15 +2,21 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import AppVStack from "../mui/AppVStack";
 import AppText from "../mui/AppText";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { LoginContext } from "../../context";
 import EmptyContainer from "./EmptyContainer";
-import AppLoader from "../others/AppLoader";
-import { Box } from "@mui/material";
 import AppAccordianNew from "../others/AppAccordianNew";
 
 export default function Criteria() {
-  const { promptResult, loader } = useContext<any>(LoginContext);
+  const { options, imageType, setImageType } = useContext<any>(LoginContext);
+
+  useEffect(() => {
+    console.log(
+      options?.filter((asset: any) => asset?.id === imageType?.asset_id)?.[0]
+        ?.criterias?.[0]?.id
+    );
+  }, [imageType]);
+
   return (
     <AppVStack
       sx={{
@@ -27,19 +33,39 @@ export default function Criteria() {
         fontStyles={["1.5rem", "1rem", "600"]}
         sx={{ alignSelf: "flex-start", marginBottom: "16px" }}
       />
-      {loader ? (
-        <Box sx={{ height: "300px" }}>
-          <AppLoader />
-        </Box>
-      ) : promptResult?.id ? (
-        // <AppAccordian
-        //   name={promptResult?.criteria_name}
-        //   desc={promptResult?.critera}
-        // />
-        <AppAccordianNew
-          name={promptResult?.criteria_name?.replaceAll("_", " ")}
-          desc={promptResult?.critera?.replaceAll("_", " ")}
-        />
+      {imageType?.asset_id ? (
+        <div style={{ width: "100%" }}>
+          {/* {options
+            ?.filter((asset) => asset?.id === imageType?.asset_id)?.[0]
+            ?.criterias?.map((_) => (
+              <AppAccordianNew
+                onClick={(e) => setImageType({ ...imageType, criteria_id: e })}
+                key={_?.id}
+                itemKey={_?.id?.toString()}
+                name={_?.criteria_name}
+                desc={_?.client_criteria}
+                selectedId={imageType?.criteria_id}
+                defaultValue={
+                  options?.filter(
+                    (asset) => asset?.id === imageType?.asset_id
+                  )?.[0]?.criterias?.[0]?.id
+                }
+              />
+            ))} */}
+          {
+            <AppAccordianNew
+              options={options}
+              defaultValue={
+                options?.filter(
+                  (asset: any) => asset?.id === imageType?.asset_id
+                )?.[0]?.criterias?.[0]?.id
+              }
+              assetId={imageType?.asset_id}
+              selectedId={imageType?.criteria_id}
+              onClick={(e) => setImageType({ ...imageType, criteria_id: e })}
+            />
+          }
+        </div>
       ) : (
         <EmptyContainer />
       )}
