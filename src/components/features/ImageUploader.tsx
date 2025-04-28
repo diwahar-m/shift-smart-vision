@@ -127,7 +127,7 @@ export default function ImageUploader() {
             console.log(selected);
 
             setImageType({
-              asset_id: options?.find((_) => _?.id === selected)?.id,
+              asset_id: options?.find((_: any) => _?.id === selected)?.id,
               input_image_id: null,
               criteria_id: null,
             });
