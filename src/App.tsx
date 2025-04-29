@@ -6,6 +6,7 @@ import Loader from "./pages/Loader";
 import ContextLayout from "./context";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Box } from "@mui/material";
+import "@radix-ui/themes/styles.css";
 
 const queryClient = new QueryClient();
 

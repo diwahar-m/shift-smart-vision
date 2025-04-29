@@ -14,7 +14,7 @@ import { LoginContext } from "@/context";
 import { toast, ToastContainer } from "react-toastify";
 
 export default function Home() {
-  const { setLoader, setPromptResult, imageType, setFiles } =
+  const { setLoader, setPromptResult, imageType, setFiles, additionalSpec } =
     useContext<any>(LoginContext);
 
   const { mutate: mutateAssessment } = useMutation<any>({
@@ -35,7 +35,7 @@ export default function Home() {
       imageType?.input_image_id &&
       imageType?.criteria_id
     ) {
-      mutateAssessment(imageType);
+      mutateAssessment({ ...imageType, additional_spec: additionalSpec });
       setLoader(true);
     } else {
       toast("Please select all fields");

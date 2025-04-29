@@ -30,6 +30,7 @@ export default function ImageUploader() {
     setImageType,
     files,
     setFiles,
+    setAdditionalSpec,
   } = useContext<any>(LoginContext);
 
   const { data } = useQuery<any>({
@@ -57,6 +58,7 @@ export default function ImageUploader() {
     setPromptResult("");
     setFiles("");
     setPromptResult(null);
+    setAdditionalSpec();
   };
 
   return (

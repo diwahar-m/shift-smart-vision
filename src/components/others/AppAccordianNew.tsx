@@ -9,6 +9,10 @@ import {
 import { CircleCheckBig } from "lucide-react";
 import AppHStack from "../mui/AppHStack";
 import AppText from "../mui/AppText";
+import AppVStack from "../mui/AppVStack";
+import { TextArea } from "@radix-ui/themes";
+import { useContext } from "react";
+import { LoginContext } from "@/context";
 
 interface AppAccordianProps {
   name?: string;
@@ -28,6 +32,8 @@ export default function AppAccordianNew({
   assetId,
   options,
 }: AppAccordianProps) {
+  // @ts-expect-error ""
+  const { additionalSpec, setAdditionalSpec } = useContext(LoginContext);
   return (
     <Accordion
       defaultValue={defaultValue?.toString()}
@@ -38,27 +44,23 @@ export default function AppAccordianNew({
       {options
         ?.filter((asset) => asset?.id === assetId)?.[0]
         ?.criterias?.map((_: any) => (
-          <AccordionItem
-            // @ts-expect-error "id"
-            onClick={(e) => onClick(e?.target?.id)}
-            className="AccordionItem"
-            value={_?.id?.toString()}
-          >
+          <AccordionItem className="AccordionItem" value={_?.id?.toString()}>
             <AccordionTrigger
+              onClick={(e) => {
+                setAdditionalSpec();
+                // @ts-expect-error "id"
+                onClick(e?.target?.id);
+              }}
               id={_?.id}
               style={{
                 backgroundColor:
                   selectedId == _?.id?.toString() ? "#eedbdb" : "",
               }}
             >
-              {/* {_?.criteria_name + selectedId == _?.id?.toString()
-                ? "#ccbcbc"
-                : ""} */}
               {selectedId == _?.id?.toString() ? (
                 <AppHStack sx={{ gap: "10px" }}>
                   <AppText text={_?.criteria_name} />
                   <CircleCheckBig size="18" color="#1d582c" />
-                  {/* <CircleCheckBig /> */}
                 </AppHStack>
               ) : (
                 _?.criteria_name
@@ -72,7 +74,40 @@ export default function AppAccordianNew({
                 textAlign: "left",
               }}
             >
-              {_?.client_criteria}
+              <AppVStack sx={{ gap: "5px" }}>
+                {_?.client_criteria}{" "}
+                <AppVStack sx={{ gap: "3px" }}>
+                  <AppText
+                    variant="subtitle2"
+                    text="(Optional)"
+                    sx={{
+                      alignSelf: "flex-start",
+                      marginBottom: "4px",
+                      textAlign: "left",
+                      color: "#656569",
+                    }}
+                  />
+                  <TextArea
+                    // onMouseDown={(e) => e.stopPropagation()}
+                    style={{
+                      border: "1px solid #a1a1a1",
+                      borderRadius: "10px",
+                      padding: "6px",
+                      minHeight: "80px",
+                      maxHeight: "120px",
+                      userSelect: "text",
+                      WebkitUserSelect: "text",
+                      MozUserSelect: "text",
+                      msUserSelect: "text",
+                    }}
+                    resize={"vertical"}
+                    variant="classic"
+                    value={additionalSpec}
+                    onChange={(e) => setAdditionalSpec(e.target.value)}
+                    placeholder="Additional Criteria…"
+                  />
+                </AppVStack>
+              </AppVStack>
             </AccordionContent>
           </AccordionItem>
         ))}

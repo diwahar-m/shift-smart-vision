@@ -12,12 +12,19 @@ export default function ContextLayout() {
   const [options, setOptions] = useState([]);
   const [files, setFiles] = useState("");
   const navigate = useNavigate();
+  const [additionalSpec, setAdditionalSpec] = useState("");
   const [imageType, setImageType] = useState({
     input_image_id: "",
     asset_id: "",
   });
 
-  console.log("promptResult", promptResult);
+  // const addCriteriaNote=(assetId, criteriaId, text)=> {
+  //   const filteredCriteria = options
+  //     ?.filter((asset) => asset?.id === assetId)?.[0]?.criterias?.map((criteria)=> {
+  //       if(criteria?.id === criteriaId) criteria['additional_spec'] = text
+  //     });
+
+  // }
 
   useEffect(() => {
     localStorage.setItem("username", user?.username);
@@ -47,6 +54,8 @@ export default function ContextLayout() {
           setImageType,
           files,
           setFiles,
+          additionalSpec,
+          setAdditionalSpec,
         }}
       >
         <Outlet />
