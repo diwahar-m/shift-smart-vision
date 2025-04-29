@@ -12,6 +12,7 @@ interface AppButtonProps {
   handleClick?: () => void;
   loading?: boolean;
   id?: string;
+  type?: "button" | "submit" | "reset";
 }
 
 const AppButton = ({
@@ -23,6 +24,7 @@ const AppButton = ({
   tooltipText,
   handleClick,
   loading,
+  type = "button",
   id,
   ...rest
 }: AppButtonProps) => {
@@ -30,6 +32,7 @@ const AppButton = ({
     <>
       <Tooltip title={tooltipText}>
         <Button
+          type={type}
           id={id}
           loading={loading}
           onClick={handleClick}

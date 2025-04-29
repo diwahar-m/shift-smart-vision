@@ -23,6 +23,12 @@ export default function AppNavbar() {
               "&:hover": {
                 backgroundColor: "transparent",
               },
+              "&:active": {
+                outline: "none",
+              },
+              "&:focus": {
+                outline: "none",
+              },
             }}
           >
             <AppHStack sx={{ gap: "40px" }}>

@@ -64,38 +64,33 @@ export default function Result({ handleSubmit }: any) {
           color: "#656569",
         }}
       />
-      {imageType?.asset_id &&
-      imageType?.input_image_id &&
-      imageType?.criteria_id ? (
-        <AppButton
-          loading={loader}
-          handleClick={handleSubmit}
-          isDisabled={
-            !imageType?.asset_id &&
-            !imageType?.input_image_id &&
-            !imageType?.criteria_id
-          }
-          sx={{
-            bgcolor: "skyblue",
-            // alignSelf: "flex-end",
-            color: "white",
-            height: "38px",
-            fontWeight: "bold",
-            width: "100%",
-            borderRadius: "10px",
-            "&:hover": {
-              backgroundColor: "#007fff",
-            },
-          }}
-        >
-          <AppHStack sx={{ gap: "5px" }}>
-            <Sparkles size="20" />
-            Run Assessment
-          </AppHStack>
-        </AppButton>
-      ) : (
-        <></>
-      )}
+
+      <AppButton
+        loading={loader}
+        handleClick={handleSubmit}
+        isDisabled={
+          !imageType?.asset_id &&
+          !imageType?.input_image_id &&
+          !imageType?.criteria_id
+        }
+        sx={{
+          bgcolor: "skyblue",
+          // alignSelf: "flex-end",
+          color: "white",
+          height: "38px",
+          fontWeight: "bold",
+          width: "100%",
+          borderRadius: "10px",
+          "&:hover": {
+            backgroundColor: "#007fff",
+          },
+        }}
+      >
+        <AppHStack sx={{ gap: "5px" }}>
+          <Sparkles size="20" />
+          Run Assessment
+        </AppHStack>
+      </AppButton>
 
       {loader ? (
         <Box sx={{ height: "300px" }}>

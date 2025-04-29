@@ -18,8 +18,9 @@ export default function AppInput({
   onChange,
 }: AppInputProps) {
   return (
+    // @ts-expect-error "box"
     <Box
-      component="form"
+      // component={"input"}
       sx={{ "& > :not(style)": { m: 1, width: "25ch" } }}
       noValidate
       autoComplete="off"

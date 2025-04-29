@@ -16,7 +16,16 @@ export default function Login() {
   useEffect(() => {
     setError("");
   }, []);
-  console.log(user);
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    if (user?.username === "shiftsmart" && user?.password === "2A2Rs75R")
+      navigate("/dashboard");
+    else {
+      setError("Invalid credentials");
+    }
+  };
+
   return (
     <AppVStack
       sx={{
@@ -26,75 +35,78 @@ export default function Login() {
         alignItems: "center",
       }}
     >
-      <AppVStack
-        sx={{
-          gap: "5px",
-          alignItems: "center",
-          border: "1px solid skyblue",
-          padding: "40px 20px",
-          borderRadius: "10px",
-          boxShadow: "5px 10px 15px skyblue",
-        }}
-      >
-        <AppImage
-          src={LogoIcon}
-          sx={{ width: "170px", marginBottom: "10px" }}
-        />
-        <AppText
-          variant="subtitle2"
-          fontStyles={["14px", "18px", "500"]}
-          sx={{ color: "#a1a1aa" }}
-          //   fontStyles={['']}
-          text={"MACHINE - VISION"}
-        />
-
-        <AppInput
-          label="Username"
-          value={user?.username}
-          onChange={(e) => {
-            setUser({ ...user, username: e.target.value });
-            setError("");
-          }}
-        />
-        <AppInput
-          label="Password"
-          type="password"
-          value={user?.password}
-          onChange={(e) => {
-            setUser({ ...user, password: e.target.value });
-            setError("");
-          }}
-        />
-        {error && (
-          <AppText variant="subtitle2" sx={{ color: "red" }} text={error} />
-        )}
-        <AppButton
-          id="login"
+      <form onSubmit={handleSubmit}>
+        <AppVStack
           sx={{
-            bgcolor: "skyblue",
-            width: "92%",
-            color: "white",
-            height: "35px",
-            fontWeight: "bold",
-            borderRadius: "20px",
-            "&:hover": {
-              backgroundColor: "#007fff",
-            },
-          }}
-          handleClick={() => {
-            if (
-              user?.username === "shiftsmart" &&
-              user?.password === "2A2Rs75R"
-            )
-              navigate("/dashboard");
-            else {
-              setError("Invalid credentials");
-            }
+            gap: "5px",
+            alignItems: "center",
+            border: "1px solid skyblue",
+            padding: "40px 20px",
+            borderRadius: "10px",
+            boxShadow: "5px 10px 15px skyblue",
           }}
         >
-          Login
-        </AppButton>
-      </AppVStack>
+          <AppImage
+            src={LogoIcon}
+            sx={{ width: "170px", marginBottom: "10px" }}
+          />
+          <AppText
+            variant="subtitle2"
+            fontStyles={["14px", "18px", "500"]}
+            sx={{ color: "#a1a1aa" }}
+            //   fontStyles={['']}
+            text={"MACHINE - VISION"}
+          />
+
+          <AppInput
+            label="Username"
+            value={user?.username}
+            onChange={(e) => {
+              setUser({ ...user, username: e.target.value });
+              setError("");
+            }}
+          />
+          <AppInput
+            label="Password"
+            type="password"
+            value={user?.password}
+            onChange={(e) => {
+              setUser({ ...user, password: e.target.value });
+              setError("");
+            }}
+          />
+          {error && (
+            <AppText variant="subtitle2" sx={{ color: "red" }} text={error} />
+          )}
+          <AppButton
+            type="submit"
+            id="login"
+            sx={{
+              bgcolor: "skyblue",
+              width: "92%",
+              color: "white",
+              height: "35px",
+              fontWeight: "bold",
+              borderRadius: "20px",
+              "&:hover": {
+                backgroundColor: "#007fff",
+              },
+            }}
+            // handleClick={() => {
+            //   if (
+            //     user?.username === "shiftsmart" &&
+            //     user?.password === "2A2Rs75R"
+            //   )
+            //     navigate("/dashboard");
+            //   else {
+            //     setError("Invalid credentials");
+            //   }
+            // }}
+          >
+            Login
+          </AppButton>
+        </AppVStack>
+      </form>
     </AppVStack>
   );
 }
