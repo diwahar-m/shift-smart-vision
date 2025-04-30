@@ -11,6 +11,7 @@ import { useContext, useEffect, useState } from "react";
 import { LoginContext } from "../context";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { toast, ToastContainer } from "react-toastify";
 export default function Login() {
   const navigate = useNavigate();
   const { user, setUser } = useContext<any>(LoginContext);
@@ -24,7 +25,8 @@ export default function Login() {
     if (user?.username === "shiftsmart" && user?.password === "2A2Rs75R")
       navigate("/dashboard");
     else {
-      setError("Invalid credentials");
+      toast("Please enter valid credentials");
+      // setError("Invalid credentials");
     }
   };
 
@@ -39,14 +41,17 @@ export default function Login() {
     >
       <form onSubmit={handleSubmit}>
         <AppVStack
+          // @ts-expect-error ""
+          className="navbar-background"
           sx={{
-            gap: "10px",
+            gap: "15px",
             alignItems: "center",
-            border: "1px solid skyblue",
+            // border: "1px solid skyblue",
+            border: "1px solid #ccc",
             padding: "40px 20px",
             borderRadius: "10px",
-            boxShadow: "5px 10px 15px skyblue",
-            minWidth: "300px",
+            // boxShadow: "5px 10px 15px skyblue",
+            width: "340px",
           }}
         >
           <AppImage
@@ -60,6 +65,13 @@ export default function Login() {
             //   fontStyles={['']}
             text={"MACHINE - VISION"}
           />
+          <AppText
+            variant="subtitle2"
+            fontStyles={["12px", "18px", "500"]}
+            sx={{ color: "#black" }}
+            //   fontStyles={['']}
+            text={"Enter your credentials to login to your account."}
+          />
 
           {/* <AppInput
             label="Username"
@@ -69,15 +81,24 @@ export default function Login() {
               setError("");
             }}
           /> */}
-          <Input
-            placeholder="Username"
-            className="focus-visible:ring-0"
-            value={user?.username}
-            onChange={(e) => {
-              setUser({ ...user, username: e.target.value });
-              setError("");
-            }}
-          />
+          <AppVStack sx={{ gap: "5px", width: "100%" }}>
+            <AppText
+              variant="subtitle2"
+              fontStyles={["14px", "18px", "500"]}
+              sx={{ color: "#black", alignSelf: "flex-start" }}
+              //   fontStyles={['']}
+              text={"Username"}
+            />
+            <Input
+              placeholder="Username"
+              className="focus-visible:ring-0"
+              value={user?.username}
+              onChange={(e) => {
+                setUser({ ...user, username: e.target.value });
+                setError("");
+              }}
+            />
+          </AppVStack>
 
           {/* <AppInput
             label="Password"
@@ -88,15 +109,24 @@ export default function Login() {
               setError("");
             }}
           /> */}
-          <Input
-            placeholder="Password"
-            className="focus-visible:ring-0"
-            value={user?.password}
-            onChange={(e) => {
-              setUser({ ...user, password: e.target.value });
-              setError("");
-            }}
-          />
+          <AppVStack sx={{ gap: "5px", width: "100%" }}>
+            <AppText
+              variant="subtitle2"
+              fontStyles={["14px", "18px", "500"]}
+              sx={{ color: "#black", alignSelf: "flex-start" }}
+              //   fontStyles={['']}
+              text={"Password"}
+            />
+            <Input
+              placeholder="Password"
+              className="focus-visible:ring-0"
+              value={user?.password}
+              onChange={(e) => {
+                setUser({ ...user, password: e.target.value });
+                setError("");
+              }}
+            />
+          </AppVStack>
           {error && (
             <AppText variant="subtitle2" sx={{ color: "red" }} text={error} />
           )}
@@ -120,12 +150,13 @@ export default function Login() {
           <Button
             type="submit"
             id="login"
-            className="bg-sky-400 mt-2 w-[100%] text-white h-[35px] font-bold rounded-[20px] hover:bg-[#007fff] focus:!outline-none active:!outline-none"
+            className=" mt-2 w-[100%] text-white h-[35px] font-bold rounded-[20px]  focus:!outline-none active:!outline-none"
           >
             Login
           </Button>
         </AppVStack>
       </form>
+      <ToastContainer position="bottom-center" />
     </AppVStack>
   );
 }

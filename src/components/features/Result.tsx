@@ -93,7 +93,7 @@ export default function Result({ handleSubmit }: any) {
         </AppHStack>
       </AppButton> */}
       <Button
-        className="bg-sky-500 text-white h-[38px] font-bold w-full rounded-[10px] hover:bg-[#007fff] transition-colors duration-200 self-end focus:!outline-none active:!outline-none"
+        className=" text-white h-[38px] font-bold w-full rounded-[10px]  transition-colors duration-200 self-end focus:!outline-none active:!outline-none"
         onClick={() => handleSubmit()}
         onLoad={loader}
         // disabled={

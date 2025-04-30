@@ -47,3 +47,10 @@ button :focus :active{
 .read-the-docs {
   color: #888;
 }
+
+.navbar-background {
+  /* background: #edf2f2; */
+  z-index: 50;
+  box-shadow: 0 0 10px #ccc;
+  /* background: linear-gradient(90deg, rgba(237, 242, 242, 1) 0%, rgba(148, 186, 212, 1) 50%, rgba(63, 176, 232, 1) 100%); */
+}
