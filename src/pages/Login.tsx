@@ -3,12 +3,14 @@
 import AppVStack from "../components/mui/AppVStack";
 import AppImage from "../components/mui/AppImage";
 import { LogoIcon } from "../assets";
-import AppInput from "../components/mui/AppInput";
-import AppButton from "../components/mui/AppButton";
+// import AppInput from "../components/mui/AppInput";
+// import AppButton from "../components/mui/AppButton";
 import AppText from "../components/mui/AppText";
 import { useNavigate } from "react-router";
 import { useContext, useEffect, useState } from "react";
 import { LoginContext } from "../context";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 export default function Login() {
   const navigate = useNavigate();
   const { user, setUser } = useContext<any>(LoginContext);
@@ -38,12 +40,13 @@ export default function Login() {
       <form onSubmit={handleSubmit}>
         <AppVStack
           sx={{
-            gap: "5px",
+            gap: "10px",
             alignItems: "center",
             border: "1px solid skyblue",
             padding: "40px 20px",
             borderRadius: "10px",
             boxShadow: "5px 10px 15px skyblue",
+            minWidth: "300px",
           }}
         >
           <AppImage
@@ -58,17 +61,36 @@ export default function Login() {
             text={"MACHINE - VISION"}
           />
 
-          <AppInput
+          {/* <AppInput
             label="Username"
             value={user?.username}
             onChange={(e) => {
               setUser({ ...user, username: e.target.value });
               setError("");
             }}
+          /> */}
+          <Input
+            placeholder="Username"
+            className="focus-visible:ring-0"
+            value={user?.username}
+            onChange={(e) => {
+              setUser({ ...user, username: e.target.value });
+              setError("");
+            }}
           />
-          <AppInput
+
+          {/* <AppInput
             label="Password"
             type="password"
+            value={user?.password}
+            onChange={(e) => {
+              setUser({ ...user, password: e.target.value });
+              setError("");
+            }}
+          /> */}
+          <Input
+            placeholder="Password"
+            className="focus-visible:ring-0"
             value={user?.password}
             onChange={(e) => {
               setUser({ ...user, password: e.target.value });
@@ -78,7 +100,7 @@ export default function Login() {
           {error && (
             <AppText variant="subtitle2" sx={{ color: "red" }} text={error} />
           )}
-          <AppButton
+          {/* <AppButton
             type="submit"
             id="login"
             sx={{
@@ -92,19 +114,16 @@ export default function Login() {
                 backgroundColor: "#007fff",
               },
             }}
-            // handleClick={() => {
-            //   if (
-            //     user?.username === "shiftsmart" &&
-            //     user?.password === "2A2Rs75R"
-            //   )
-            //     navigate("/dashboard");
-            //   else {
-            //     setError("Invalid credentials");
-            //   }
-            // }}
           >
             Login
-          </AppButton>
+          </AppButton> */}
+          <Button
+            type="submit"
+            id="login"
+            className="bg-sky-400 mt-2 w-[100%] text-white h-[35px] font-bold rounded-[20px] hover:bg-[#007fff] focus:!outline-none active:!outline-none"
+          >
+            Login
+          </Button>
         </AppVStack>
       </form>
     </AppVStack>

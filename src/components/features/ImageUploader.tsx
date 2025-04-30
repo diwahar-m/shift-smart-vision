@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import AppVStack from "../mui/AppVStack";
 import AppDropZone from "../others/AppDropZone";
-import AppButton from "../mui/AppButton";
+// import AppButton from "../mui/AppButton";
 import AppText from "../mui/AppText";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import makeGetRequest from "../../api/makeGetRequest";
@@ -13,6 +13,7 @@ import makePostRequest from "../../api/makePostRequest";
 import { LoginContext } from "../../context";
 import AppSelectNew from "../others/AppSelectNew";
 import { Box } from "@mui/material";
+import { Button } from "../ui/button";
 
 export default function ImageUploader() {
   // const [options, setOptions] = useState<any>([]);
@@ -120,33 +121,8 @@ export default function ImageUploader() {
           setFiles={setFiles}
         />
       </AppVStack>
+
       {/* <AppButton
-        loading={loader}
-        handleClick={handleSubmit}
-        isDisabled={
-          !imageType?.asset_id &&
-          !imageType?.input_image_id &&
-          !imageType?.criteria_id
-        }
-        sx={{
-          bgcolor: "skyblue",
-          // alignSelf: "flex-end",
-          color: "white",
-          height: "38px",
-          fontWeight: "bold",
-          width: "100%",
-          borderRadius: "10px",
-          "&:hover": {
-            backgroundColor: "#007fff",
-          },
-        }}
-      >
-        <AppHStack sx={{ gap: "5px" }}>
-          <Sparkles size="20" />
-          Run Assessment
-        </AppHStack>
-      </AppButton> */}
-      <AppButton
         sx={{
           height: "38px",
           fontWeight: "bold",
@@ -166,7 +142,20 @@ export default function ImageUploader() {
         }}
       >
         Clear
-      </AppButton>
+      </AppButton> */}
+      <Button
+        className="h-[38px] font-bold w-full rounded-[10px] bg-[#eb7f86] hover:bg-[#eb7f86] text-white focus:!outline-none active:!outline-none"
+        onClick={() => {
+          setImageType({
+            input_image_id: "",
+            asset_id: "",
+            criteria_id: "",
+          });
+          handleClear();
+        }}
+      >
+        Clear
+      </Button>
       {/* <ToastContainer position="bottom-center" /> */}
     </AppVStack>
   );

@@ -9,12 +9,13 @@ import EmptyContainer from "./EmptyContainer";
 import AppLoader from "../others/AppLoader";
 import { Box } from "@mui/material";
 import AssessmentCard from "./AssessmentCard";
-import AppButton from "../mui/AppButton";
+// import AppButton from "../mui/AppButton";
 import AppHStack from "../mui/AppHStack";
 import { Sparkles } from "lucide-react";
+import { Button } from "../ui/button";
 
 export default function Result({ handleSubmit }: any) {
-  const { promptResult, loader, imageType } = useContext<any>(LoginContext);
+  const { promptResult, loader } = useContext<any>(LoginContext);
   const [predictions, setPredictions] = useState<any>([]);
 
   useEffect(() => {
@@ -65,7 +66,7 @@ export default function Result({ handleSubmit }: any) {
         }}
       />
 
-      <AppButton
+      {/* <AppButton
         loading={loader}
         handleClick={handleSubmit}
         isDisabled={
@@ -90,7 +91,22 @@ export default function Result({ handleSubmit }: any) {
           <Sparkles size="20" />
           Run Assessment
         </AppHStack>
-      </AppButton>
+      </AppButton> */}
+      <Button
+        className="bg-sky-500 text-white h-[38px] font-bold w-full rounded-[10px] hover:bg-[#007fff] transition-colors duration-200 self-end focus:!outline-none active:!outline-none"
+        onClick={() => handleSubmit()}
+        onLoad={loader}
+        // disabled={
+        //   !imageType?.asset_id &&
+        //   !imageType?.input_image_id &&
+        //   !imageType?.criteria_id
+        // }
+      >
+        <AppHStack sx={{ gap: "5px" }}>
+          <Sparkles size="20" />
+          Run Assessment
+        </AppHStack>
+      </Button>
 
       {loader ? (
         <Box sx={{ height: "300px" }}>

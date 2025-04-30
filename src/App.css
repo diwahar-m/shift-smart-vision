@@ -5,6 +5,11 @@
   /* padding: 15px; */
   text-align: center;
   overflow-x:hidden;
+ 
+}
+
+button :focus :active{
+  outline: none !important;
 }
 
 .logo {

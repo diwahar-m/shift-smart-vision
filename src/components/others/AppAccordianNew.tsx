@@ -10,9 +10,10 @@ import { CircleCheckBig } from "lucide-react";
 import AppHStack from "../mui/AppHStack";
 import AppText from "../mui/AppText";
 import AppVStack from "../mui/AppVStack";
-import { TextArea } from "@radix-ui/themes";
+// import { TextArea } from "@radix-ui/themes";
 import { useContext } from "react";
 import { LoginContext } from "@/context";
+import { Textarea } from "../ui/textarea";
 
 interface AppAccordianProps {
   name?: string;
@@ -46,6 +47,7 @@ export default function AppAccordianNew({
         ?.criterias?.map((_: any) => (
           <AccordionItem className="AccordionItem" value={_?.id?.toString()}>
             <AccordionTrigger
+              className="focus:!outline-none active:!outline-none"
               onClick={(e) => {
                 setAdditionalSpec();
                 // @ts-expect-error "id"
@@ -76,7 +78,7 @@ export default function AppAccordianNew({
             >
               <AppVStack sx={{ gap: "5px" }}>
                 {_?.client_criteria}{" "}
-                <AppVStack sx={{ gap: "3px" }}>
+                <AppVStack sx={{ gap: "3px", alignItems: "center" }}>
                   <AppText
                     variant="subtitle2"
                     text="(Optional)"
@@ -87,8 +89,7 @@ export default function AppAccordianNew({
                       color: "#656569",
                     }}
                   />
-                  <TextArea
-                    // onMouseDown={(e) => e.stopPropagation()}
+                  {/* <TextArea
                     style={{
                       border: "1px solid #a1a1a1",
                       borderRadius: "10px",
@@ -102,6 +103,12 @@ export default function AppAccordianNew({
                     }}
                     resize={"vertical"}
                     variant="classic"
+                    value={additionalSpec}
+                    onChange={(e) => setAdditionalSpec(e.target.value)}
+                    placeholder="Additional Criteria…"
+                  /> */}
+                  <Textarea
+                    className="border-[#a1a1a1] w-[98%] rounded-[10px] p-1.5 min-h-[80px] max-h-[120px] select-text resize-y"
                     value={additionalSpec}
                     onChange={(e) => setAdditionalSpec(e.target.value)}
                     placeholder="Additional Criteria…"

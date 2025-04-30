@@ -24,7 +24,6 @@ export default function AppSelectNew({
   label,
   value,
 }: AppSelectProps) {
-  console.log(options);
   return (
     <AppVStack sx={{ gap: "10px" }}>
       {label && (
@@ -32,7 +31,7 @@ export default function AppSelectNew({
       )}
 
       <Select value={value} onValueChange={onChange}>
-        <SelectTrigger className="w-[180px]">
+        <SelectTrigger>
           <SelectValue placeholder="Choose Asset" />
         </SelectTrigger>
         <SelectContent>
