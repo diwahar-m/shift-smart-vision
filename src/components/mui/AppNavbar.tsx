@@ -52,7 +52,7 @@ export default function AppNavbar() {
     //   </AppBar>
     // </Box>
 
-    <nav className=" top-4 z-navbar w-full lg:top-6  ">
+    <nav className=" top-4 z-navbar w-full lg:top-6 sticky bg-[#fff]  ">
       <div className=" container box-border !max-w-[1672px] !px-6 md:!px-6 ">
         <div className="navbar-background relative flex  h-[60px] w-[96%]  items-center justify-between rounded-lg border border-transparent bg-brand-background px-2 py-1.5 transition-[box-shadow_background-color_border-color] duration-300 motion-reduce:transition-none lg:grid lg:grid-cols-2 lg:rounded-2xl lg:py-[0.4375rem] lg:pr-[0.4375rem]">
           <AppHStack sx={{ gap: "40px" }}>
